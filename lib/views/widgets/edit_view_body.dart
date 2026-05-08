@@ -21,7 +21,7 @@ class EditViewBody extends StatelessWidget {
           SizedBox(height: 20,),
           CustomTextField(
               hint: 'Content',
-            maxLines: 5,
+            maxLines: 4,
           ),
 
         ],
