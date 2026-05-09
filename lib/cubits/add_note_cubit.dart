@@ -1,6 +1,8 @@
 import 'package:bloc/bloc.dart';
+import 'package:hive/hive.dart';
 import 'package:meta/meta.dart';
 
+import '../Constant.dart';
 import '../models/node_model.dart';
 
 part 'add_note_state.dart';
@@ -10,7 +12,15 @@ class AddNoteCubit extends Cubit<AddNoteState> {
 
 
 
-  addNote (NodeModel note){
+  addNote (NodeModel note)async{
+    emit(AddNoteLoading());
+    try {
+      var notesBox = Hive.box<NodeModel>(KNotesBox);
+      emit(AddNoteSuccess());
+      await notesBox.add(note);
+    }catch(e) {
+      AddNoteFailure(e.toString());
+    }
 
   }
 }
