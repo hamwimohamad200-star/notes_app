@@ -33,7 +33,11 @@ class _AddNoteFormState extends State<AddNoteForm> {
           SizedBox(height: 16,),
           CustomTextField(onSaved: (value) {subtitle = value ;},hint: 'Content', maxLines: 5,),
           SizedBox(height: 16,),
-          CustomButton(onTap: (){
+          BlocBuilder<AddNoteCubit, AddNoteState>(
+            builder: (context, state) {
+            return CustomButton(
+            isLoading: state is AddNoteLoading ? true : false,
+            onTap: (){
             if(_formKey.currentState!.validate())
             {
               _formKey.currentState!.save();
@@ -45,7 +49,9 @@ class _AddNoteFormState extends State<AddNoteForm> {
               setState(() {
 
               });
-            }},),
+            }},);
+  },
+),
           SizedBox(height: 16,),
         ],
       ),
