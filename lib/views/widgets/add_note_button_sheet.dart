@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:notes_app/Constant.dart';
 
-import '../../cubits/add_note_cubit.dart';
+import '../../cubits/add_note_cubit/add_note_cubit.dart';
 import 'add_note_form.dart';
 import 'custom_button.dart';
 import 'custom_text_field.dart';
@@ -28,7 +28,10 @@ class AddNoteButtonSheet extends StatelessWidget {
           return AbsorbPointer(
             absorbing: state is AddNoteLoading ? true : false,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
+              padding: EdgeInsets.only(
+                  left: 16 ,
+                  right: 16 ,
+                  bottom: MediaQuery.of(context).viewInsets.bottom),
               child: SingleChildScrollView(
                   child: AddNoteForm()
               ),

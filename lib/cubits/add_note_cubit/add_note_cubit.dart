@@ -2,8 +2,8 @@ import 'package:bloc/bloc.dart';
 import 'package:hive/hive.dart';
 import 'package:meta/meta.dart';
 
-import '../Constant.dart';
-import '../models/node_model.dart';
+import '../../Constant.dart';
+import '../../models/node_model.dart';
 
 part 'add_note_state.dart';
 
