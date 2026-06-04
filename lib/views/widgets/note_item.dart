@@ -6,13 +6,15 @@ import '../../models/node_model.dart';
 import 'edit_note_view.dart';
 
 class NoteItem extends StatelessWidget {
-  const NoteItem({super.key, required this.note});
+  const NoteItem({super.key, required this.note, this.isReadOnly = false});
 
+  final bool isReadOnly ;
   final NodeModel note ;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
+        if (isReadOnly) return ;
         Navigator.push(context , MaterialPageRoute(builder: (context) => EditNoteView(note: note),));
       },
       child: Container(
@@ -30,7 +32,7 @@ class NoteItem extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 16 , bottom: 10),
                 child: Text(note.subtitle , style: TextStyle(color:  Colors.black.withOpacity(.4) , fontSize: 20),),
               ),
-              trailing: IconButton(onPressed: (){
+              trailing: isReadOnly ? null : IconButton(onPressed: (){
                 note.delete();
                 BlocProvider.of<NotesCubit>(context).fetchAllNotes();
                 },

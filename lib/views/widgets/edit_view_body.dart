@@ -25,7 +25,6 @@ class _EditViewBodyState extends State<EditViewBody> {
         children: [
           SizedBox(height: 50,),
           CustomAppBar(onPressed: () {
-            print("object");
             widget.note.title = title ?? widget.note.title;
             widget.note.subtitle = subTitle ?? widget.note.subtitle;
             BlocProvider.of<NotesCubit>(context).fetchAllNotes();
